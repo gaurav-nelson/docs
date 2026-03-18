@@ -37,6 +37,10 @@ test: htmltest ## Runs tests
 build: ## Build the website locally in the public/ folder
 	podman run $(PODMAN_OPTS) -v $(PWD):/site:$(ATTRS) --entrypoint hugo $(HOMEPAGE_CONTAINER)
 
+.PHONY: generate-md
+generate-md: ## Generate Markdown versions of all pages in public/
+	node utils/generate-md.js
+
 .PHONY: serve
 serve: ## Build the website locally from a container and serve it
 	@echo "Serving via container. Browse to http://localhost:4000"
